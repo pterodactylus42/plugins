@@ -24,147 +24,157 @@ MuseScore {
    menuPath: "Plugins.Notes." + qsTr("OctaveNoteNames") 
 
    function nameChord (notes, text) {
-      for (var i = notes.length - 1; i >= 0; i--) {
-         var sep = ",";         if ( i > 0 )
-            text.text = sep + text.text; // any but bottom note 
+      //reverse loop direction ... for (var i = notes.length - 1; i >= 0; i--) || for (var i = 0; i <= notes.length - 1; i++)
+      for (var i = notes.length - 1; i >= 0; i--) { // high notes first
 
          if (typeof notes[i].tpc === "undefined") // like for grace notes ?!?
             return;
 
          if ( (Math.floor(notes[i].pitch / 12) - 1) >= 3) {
 
-         switch (notes[i].tpc) {
-            case -1: text.text = qsTranslate("InspectorAmbitus", "f♭♭") + text.text; break;
-            case  0: text.text = qsTranslate("InspectorAmbitus", "c♭♭") + text.text; break;
-            case  1: text.text = qsTranslate("InspectorAmbitus", "g♭♭") + text.text; break;
-            case  2: text.text = qsTranslate("InspectorAmbitus", "d♭♭") + text.text; break;
-            case  3: text.text = qsTranslate("InspectorAmbitus", "a♭♭") + text.text; break;
-            case  4: text.text = qsTranslate("InspectorAmbitus", "e♭♭") + text.text; break;
-            case  5: text.text = qsTranslate("InspectorAmbitus", "h♭♭") + text.text; break;
-            case  6: text.text = qsTranslate("InspectorAmbitus", "f♭")  + text.text; break;
-            case  7: text.text = qsTranslate("InspectorAmbitus", "c♭")  + text.text; break;
+                  // subsequent notes are appended to text
 
-            case  8: text.text = qsTranslate("InspectorAmbitus", "g♭")  + text.text; break;
-            case  9: text.text = qsTranslate("InspectorAmbitus", "d♭")  + text.text; break;
-            case 10: text.text = qsTranslate("InspectorAmbitus", "a♭")  + text.text; break;
-            case 11: text.text = qsTranslate("InspectorAmbitus", "e♭")  + text.text; break;
-            case 12: text.text = qsTranslate("InspectorAmbitus", "h♭")  + text.text; break;
-            case 13: text.text = qsTranslate("InspectorAmbitus", "f")   + text.text; break;
-            case 14: text.text = qsTranslate("InspectorAmbitus", "c")   + text.text; break;
-            case 15: text.text = qsTranslate("InspectorAmbitus", "g")   + text.text; break;
-            case 16: text.text = qsTranslate("InspectorAmbitus", "d")   + text.text; break;
-            case 17: text.text = qsTranslate("InspectorAmbitus", "a")   + text.text; break;
-            case 18: text.text = qsTranslate("InspectorAmbitus", "e")   + text.text; break;
-            case 19: text.text = qsTranslate("InspectorAmbitus", "h")   + text.text; break;
-
-            case 20: text.text = qsTranslate("InspectorAmbitus", "f♯")  + text.text; break;
-            case 21: text.text = qsTranslate("InspectorAmbitus", "c♯")  + text.text; break;
-            case 22: text.text = qsTranslate("InspectorAmbitus", "g♯")  + text.text; break;
-            case 23: text.text = qsTranslate("InspectorAmbitus", "d♯")  + text.text; break;
-            case 24: text.text = qsTranslate("InspectorAmbitus", "a♯")  + text.text; break;
-            case 25: text.text = qsTranslate("InspectorAmbitus", "e♯")  + text.text; break;
-            case 26: text.text = qsTranslate("InspectorAmbitus", "h♯")  + text.text; break;
-            case 27: text.text = qsTranslate("InspectorAmbitus", "f♯♯") + text.text; break;
-            case 28: text.text = qsTranslate("InspectorAmbitus", "c♯♯") + text.text; break;
-            case 29: text.text = qsTranslate("InspectorAmbitus", "g♯♯") + text.text; break;
-            case 30: text.text = qsTranslate("InspectorAmbitus", "d♯♯") + text.text; break;
-            case 31: text.text = qsTranslate("InspectorAmbitus", "a♯♯") + text.text; break;
-            case 32: text.text = qsTranslate("InspectorAmbitus", "e♯♯") + text.text; break;
-            case 33: text.text = qsTranslate("InspectorAmbitus", "h♯♯") + text.text; break;
-            default: text.text = qsTr("?")   + text.text; break;
-         } // end switch tpc
-
-         // octave, middle C being C4
-         if ((Math.floor(notes[i].pitch / 12) - 1) == 4) { text.text += "'"; }
-         if ((Math.floor(notes[i].pitch / 12) - 1) == 5) { text.text += "''"; }
-         if ((Math.floor(notes[i].pitch / 12) - 1) == 6) { text.text += "'''"; }
+               switch (notes[i].tpc) {
+                  case -1: text.text += qsTranslate("InspectorAmbitus", "f♭♭"); break;
+                  case  0: text.text += qsTranslate("InspectorAmbitus", "c♭♭"); break;
+                  case  1: text.text += qsTranslate("InspectorAmbitus", "g♭♭"); break;
+                  case  2: text.text += qsTranslate("InspectorAmbitus", "d♭♭"); break;
+                  case  3: text.text += qsTranslate("InspectorAmbitus", "a♭♭"); break;
+                  case  4: text.text += qsTranslate("InspectorAmbitus", "e♭♭"); break;
+                  case  5: text.text += qsTranslate("InspectorAmbitus", "h♭♭"); break;
+                  case  6: text.text += qsTranslate("InspectorAmbitus", "f♭"); break;
+                  case  7: text.text += qsTranslate("InspectorAmbitus", "c♭"); break;
+      
+                  case  8: text.text += qsTranslate("InspectorAmbitus", "g♭"); break;
+                  case  9: text.text += qsTranslate("InspectorAmbitus", "d♭"); break;
+                  case 10: text.text += qsTranslate("InspectorAmbitus", "a♭"); break;
+                  case 11: text.text += qsTranslate("InspectorAmbitus", "e♭"); break;
+                  case 12: text.text += qsTranslate("InspectorAmbitus", "h♭"); break;
+                  case 13: text.text += qsTranslate("InspectorAmbitus", "f"); break;
+                  case 14: text.text += qsTranslate("InspectorAmbitus", "c"); break;
+                  case 15: text.text += qsTranslate("InspectorAmbitus", "g"); break;
+                  case 16: text.text += qsTranslate("InspectorAmbitus", "d"); break;
+                  case 17: text.text += qsTranslate("InspectorAmbitus", "a"); break;
+                  case 18: text.text += qsTranslate("InspectorAmbitus", "e"); break;
+                  case 19: text.text += qsTranslate("InspectorAmbitus", "h"); break;
+      
+                  case 20: text.text += qsTranslate("InspectorAmbitus", "f♯"); break;
+                  case 21: text.text += qsTranslate("InspectorAmbitus", "c♯"); break;
+                  case 22: text.text += qsTranslate("InspectorAmbitus", "g♯"); break;
+                  case 23: text.text += qsTranslate("InspectorAmbitus", "d♯"); break;
+                  case 24: text.text += qsTranslate("InspectorAmbitus", "a♯"); break;
+                  case 25: text.text += qsTranslate("InspectorAmbitus", "e♯"); break;
+                  case 26: text.text += qsTranslate("InspectorAmbitus", "h♯"); break;
+                  case 27: text.text += qsTranslate("InspectorAmbitus", "f♯♯"); break;
+                  case 28: text.text += qsTranslate("InspectorAmbitus", "c♯♯"); break;
+                  case 29: text.text += qsTranslate("InspectorAmbitus", "g♯♯"); break;
+                  case 30: text.text += qsTranslate("InspectorAmbitus", "d♯♯"); break;
+                  case 31: text.text += qsTranslate("InspectorAmbitus", "a♯♯"); break;
+                  case 32: text.text += qsTranslate("InspectorAmbitus", "e♯♯"); break;
+                  case 33: text.text += qsTranslate("InspectorAmbitus", "h♯♯"); break;
+                  default: text.text += qsTr("?")   + text.text; break;
+               } // end switch tpc
+      
+               // octave, middle C being C4
+               if ((Math.floor(notes[i].pitch / 12) - 1) == 4) { text.text += "'"; }
+               if ((Math.floor(notes[i].pitch / 12) - 1) == 5) { text.text += "''"; }
+               if ((Math.floor(notes[i].pitch / 12) - 1) == 6) { text.text += "'''"; }
 
          } else { // octaves lower than 3
 
-         switch (notes[i].tpc) {
-            case -1: text.text = qsTranslate("InspectorAmbitus", "F♭♭") + text.text; break;
-            case  0: text.text = qsTranslate("InspectorAmbitus", "C♭♭") + text.text; break;
-            case  1: text.text = qsTranslate("InspectorAmbitus", "G♭♭") + text.text; break;
-            case  2: text.text = qsTranslate("InspectorAmbitus", "D♭♭") + text.text; break;
-            case  3: text.text = qsTranslate("InspectorAmbitus", "A♭♭") + text.text; break;
-            case  4: text.text = qsTranslate("InspectorAmbitus", "E♭♭") + text.text; break;
-            case  5: text.text = qsTranslate("InspectorAmbitus", "H♭♭") + text.text; break;
-            case  6: text.text = qsTranslate("InspectorAmbitus", "F♭")  + text.text; break;
-            case  7: text.text = qsTranslate("InspectorAmbitus", "C♭")  + text.text; break;
+               switch (notes[i].tpc) {
+                  case -1: text.text += qsTranslate("InspectorAmbitus", "F♭♭"); break;
+                  case  0: text.text += qsTranslate("InspectorAmbitus", "C♭♭"); break;
+                  case  1: text.text += qsTranslate("InspectorAmbitus", "G♭♭"); break;
+                  case  2: text.text += qsTranslate("InspectorAmbitus", "D♭♭"); break;
+                  case  3: text.text += qsTranslate("InspectorAmbitus", "A♭♭"); break;
+                  case  4: text.text += qsTranslate("InspectorAmbitus", "E♭♭"); break;
+                  case  5: text.text += qsTranslate("InspectorAmbitus", "H♭♭"); break;
+                  case  6: text.text += qsTranslate("InspectorAmbitus", "F♭"); break;
+                  case  7: text.text += qsTranslate("InspectorAmbitus", "C♭"); break;
+      
+                  case  8: text.text += qsTranslate("InspectorAmbitus", "G♭"); break;
+                  case  9: text.text += qsTranslate("InspectorAmbitus", "D♭"); break;
+                  case 10: text.text += qsTranslate("InspectorAmbitus", "A♭"); break;
+                  case 11: text.text += qsTranslate("InspectorAmbitus", "E♭"); break;
+                  case 12: text.text += qsTranslate("InspectorAmbitus", "H♭"); break;
+                  case 13: text.text += qsTranslate("InspectorAmbitus", "F"); break;
+                  case 14: text.text += qsTranslate("InspectorAmbitus", "D"); break;
+                  case 15: text.text += qsTranslate("InspectorAmbitus", "G"); break;
+                  case 16: text.text += qsTranslate("InspectorAmbitus", "D"); break;
+                  case 17: text.text += qsTranslate("InspectorAmbitus", "A"); break;
+                  case 18: text.text += qsTranslate("InspectorAmbitus", "E"); break;
+                  case 19: text.text += qsTranslate("InspectorAmbitus", "H"); break;
+      
+                  case 20: text.text += qsTranslate("InspectorAmbitus", "F♯"); break;
+                  case 21: text.text += qsTranslate("InspectorAmbitus", "C♯"); break;
+                  case 22: text.text += qsTranslate("InspectorAmbitus", "G♯"); break;
+                  case 23: text.text += qsTranslate("InspectorAmbitus", "D♯"); break;
+                  case 24: text.text += qsTranslate("InspectorAmbitus", "A♯"); break;
+                  case 25: text.text += qsTranslate("InspectorAmbitus", "E♯"); break;
+                  case 26: text.text += qsTranslate("InspectorAmbitus", "H♯"); break;
+                  case 27: text.text += qsTranslate("InspectorAmbitus", "F♯♯"); break;
+                  case 28: text.text += qsTranslate("InspectorAmbitus", "C♯♯"); break;
+                  case 29: text.text += qsTranslate("InspectorAmbitus", "G♯♯"); break;
+                  case 30: text.text += qsTranslate("InspectorAmbitus", "D♯♯"); break;
+                  case 31: text.text += qsTranslate("InspectorAmbitus", "A♯♯"); break;
+                  case 32: text.text += qsTranslate("InspectorAmbitus", "E♯♯"); break;
+                  case 33: text.text += qsTranslate("InspectorAmbitus", "H♯♯"); break;
+                  default: text.text += qsTr("?")   + text.text; break;
+               } // end switch tpc
 
-            case  8: text.text = qsTranslate("InspectorAmbitus", "G♭")  + text.text; break;
-            case  9: text.text = qsTranslate("InspectorAmbitus", "D♭")  + text.text; break;
-            case 10: text.text = qsTranslate("InspectorAmbitus", "A♭")  + text.text; break;
-            case 11: text.text = qsTranslate("InspectorAmbitus", "E♭")  + text.text; break;
-            case 12: text.text = qsTranslate("InspectorAmbitus", "H♭")  + text.text; break;
-            case 13: text.text = qsTranslate("InspectorAmbitus", "F")   + text.text; break;
-            case 14: text.text = qsTranslate("InspectorAmbitus", "C")   + text.text; break;
-            case 15: text.text = qsTranslate("InspectorAmbitus", "G")   + text.text; break;
-            case 16: text.text = qsTranslate("InspectorAmbitus", "D")   + text.text; break;
-            case 17: text.text = qsTranslate("InspectorAmbitus", "A")   + text.text; break;
-            case 18: text.text = qsTranslate("InspectorAmbitus", "E")   + text.text; break;
-            case 19: text.text = qsTranslate("InspectorAmbitus", "H")   + text.text; break;
-
-            case 20: text.text = qsTranslate("InspectorAmbitus", "F♯")  + text.text; break;
-            case 21: text.text = qsTranslate("InspectorAmbitus", "C♯")  + text.text; break;
-            case 22: text.text = qsTranslate("InspectorAmbitus", "G♯")  + text.text; break;
-            case 23: text.text = qsTranslate("InspectorAmbitus", "D♯")  + text.text; break;
-            case 24: text.text = qsTranslate("InspectorAmbitus", "A♯")  + text.text; break;
-            case 25: text.text = qsTranslate("InspectorAmbitus", "E♯")  + text.text; break;
-            case 26: text.text = qsTranslate("InspectorAmbitus", "H♯")  + text.text; break;
-            case 27: text.text = qsTranslate("InspectorAmbitus", "F♯♯") + text.text; break;
-            case 28: text.text = qsTranslate("InspectorAmbitus", "C♯♯") + text.text; break;
-            case 29: text.text = qsTranslate("InspectorAmbitus", "G♯♯") + text.text; break;
-            case 30: text.text = qsTranslate("InspectorAmbitus", "D♯♯") + text.text; break;
-            case 31: text.text = qsTranslate("InspectorAmbitus", "A♯♯") + text.text; break;
-            case 32: text.text = qsTranslate("InspectorAmbitus", "E♯♯") + text.text; break;
-            case 33: text.text = qsTranslate("InspectorAmbitus", "H♯♯") + text.text; break;
-            default: text.text = qsTr("?")   + text.text; break;
-         } // end switch tpc
-
-         }
+         } // end if octave
 
          // octave, middle C being C4
          //text.text += (Math.floor(notes[i].pitch / 12) - 1)
          // or
          //text.text += (Math.floor(notes[i].ppitch / 12) - 1)
 
-// change below false to true for courtesy- and microtonal accidentals
-// you might need to come up with suitable translations
-// only #, b, natural and possibly also ## seem to be available in UNICODE
+         // change below false to true for courtesy- and microtonal accidentals
+         // you might need to come up with suitable translations
+         // only #, b, natural and possibly also ## seem to be available in UNICODE
          if (false) {
             switch (notes[i].userAccidental) {
                case  0: break;
-               case  1: text.text = qsTranslate("accidental", "Sharp") + text.text; break;
-               case  2: text.text = qsTranslate("accidental", "Flat") + text.text; break;
-               case  3: text.text = qsTranslate("accidental", "Double sharp") + text.text; break;
-               case  4: text.text = qsTranslate("accidental", "Double flat") + text.text; break;
-               case  5: text.text = qsTranslate("accidental", "Natural") + text.text; break;
-               case  6: text.text = qsTranslate("accidental", "Flat-slash") + text.text; break;
-               case  7: text.text = qsTranslate("accidental", "Flat-slash2") + text.text; break;
-               case  8: text.text = qsTranslate("accidental", "Mirrored-flat2") + text.text; break;
-               case  9: text.text = qsTranslate("accidental", "Mirrored-flat") + text.text; break;
-               case 10: text.text = qsTranslate("accidental", "Mirrored-flat-slash") + text.text; break;
-               case 11: text.text = qsTranslate("accidental", "Flat-flat-slash") + text.text; break;
-               case 12: text.text = qsTranslate("accidental", "Sharp-slash") + text.text; break;
-               case 13: text.text = qsTranslate("accidental", "Sharp-slash2") + text.text; break;
-               case 14: text.text = qsTranslate("accidental", "Sharp-slash3") + text.text; break;
-               case 15: text.text = qsTranslate("accidental", "Sharp-slash4") + text.text; break;
-               case 16: text.text = qsTranslate("accidental", "Sharp arrow up") + text.text; break;
-               case 17: text.text = qsTranslate("accidental", "Sharp arrow down") + text.text; break;
-               case 18: text.text = qsTranslate("accidental", "Sharp arrow both") + text.text; break;
-               case 19: text.text = qsTranslate("accidental", "Flat arrow up") + text.text; break;
-               case 20: text.text = qsTranslate("accidental", "Flat arrow down") + text.text; break;
-               case 21: text.text = qsTranslate("accidental", "Flat arrow both") + text.text; break;
-               case 22: text.text = qsTranslate("accidental", "Natural arrow down") + text.text; break;
-               case 23: text.text = qsTranslate("accidental", "Natural arrow up") + text.text; break;
-               case 24: text.text = qsTranslate("accidental", "Natural arrow both") + text.text; break;
-               case 25: text.text = qsTranslate("accidental", "Sori") + text.text; break;
-               case 26: text.text = qsTranslate("accidental", "Koron") + text.text; break;
-               default: text.text = qsTr("?") + text.text; break;
+               case  1: text.text += qsTranslate("accidental", "Sharp"); break;
+               case  2: text.text += qsTranslate("accidental", "Flat"); break;
+               case  3: text.text += qsTranslate("accidental", "Double sharp"); break;
+               case  4: text.text += qsTranslate("accidental", "Double flat"); break;
+               case  5: text.text += qsTranslate("accidental", "Natural"); break;
+               case  6: text.text += qsTranslate("accidental", "Flat-slash"); break;
+               case  7: text.text += qsTranslate("accidental", "Flat-slash2"); break;
+               case  8: text.text += qsTranslate("accidental", "Mirrored-flat2"); break;
+               case  9: text.text += qsTranslate("accidental", "Mirrored-flat"); break;
+               case 10: text.text += qsTranslate("accidental", "Mirrored-flat-slash"); break;
+               case 11: text.text += qsTranslate("accidental", "Flat-flat-slash"); break;
+               case 12: text.text += qsTranslate("accidental", "Sharp-slash"); break;
+               case 13: text.text += qsTranslate("accidental", "Sharp-slash2"); break;
+               case 14: text.text += qsTranslate("accidental", "Sharp-slash3"); break;
+               case 15: text.text += qsTranslate("accidental", "Sharp-slash4"); break;
+               case 16: text.text += qsTranslate("accidental", "Sharp arrow up"); break;
+               case 17: text.text += qsTranslate("accidental", "Sharp arrow down"); break;
+               case 18: text.text += qsTranslate("accidental", "Sharp arrow both"); break;
+               case 19: text.text += qsTranslate("accidental", "Flat arrow up"); break;
+               case 20: text.text += qsTranslate("accidental", "Flat arrow down"); break;
+               case 21: text.text += qsTranslate("accidental", "Flat arrow both"); break;
+               case 22: text.text += qsTranslate("accidental", "Natural arrow down"); break;
+               case 23: text.text += qsTranslate("accidental", "Natural arrow up"); break;
+               case 24: text.text += qsTranslate("accidental", "Natural arrow both"); break;
+               case 25: text.text += qsTranslate("accidental", "Sori"); break;
+               case 26: text.text += qsTranslate("accidental", "Koron"); break;
+               default: text.text += qsTr("?"); break;
             } // end switch userAccidental
+
          } // end if courtesy- and microtonal accidentals
+
+         var sep = "\n";    //put separator after octave marker is written
+         if ( i != 0 ) 
+            text.text = text.text + sep; // any but bottom note 
+
+         console.log(text.text + " - " + i + " - " + notes[i].pitch)
+
       } // end for note
+
    }
 
    onRun: {
@@ -195,7 +205,7 @@ MuseScore {
          }
          endStaff = cursor.staffIdx;
       }
-      console.log(startStaff + " - " + endStaff + " - " + endTick)
+      //console.log(startStaff + " - " + endStaff + " - " + endTick)
 
       for (var staff = startStaff; staff <= endStaff; staff++) {
          for (var voice = 0; voice < 4; voice++) {
